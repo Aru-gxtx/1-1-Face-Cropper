@@ -1,68 +1,87 @@
 # 1-1-Face-Cropper
 
-A Python script that automatically detects faces in images and crops them to 1x1 square profile pictures. Perfect for creating profile pictures from group photos or any image containing people.
+A <strong>Python script</strong> that automatically detects faces in images and crops them into perfect <strong>1x1 square profile pictures</strong>.
+
+This tool is perfect for creating profile pictures from group photos or any image containing people. It automatically handles detection, cropping, and resizing to ensure you get a clean, square avatar every time.
+
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/Python-3.6%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  </a>
+  <a href="https://opencv.org/">
+    <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV">
+  </a>
+  <a href="https://numpy.org/">
+    <img src="https://img.shields.io/badge/NumPy-Array%20Processing-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge" alt="License">
+  </a>
+</p>
 
 ## Features
 
-- **Automatic Face Detection**: Uses OpenCV's Haar Cascade classifier to detect faces
-- **Anime/Cartoon Face Support**: Special detection mode for anime, cartoon, and stylized characters
-- **Multiple Face Support**: If multiple people are in an image, creates separate cropped images for each person
-- **1x1 Square Output**: Crops faces to perfect square format ideal for profile pictures
-- **Customizable Padding**: Adjustable padding around faces for better framing
-- **Batch Processing**: Process single images or entire directories
-- **Multiple Format Support**: Works with JPG, PNG, BMP, TIFF, and other common image formats
+* **Automatic Face Detection:** Uses OpenCV's Haar Cascade classifier to accurately locate faces.
+* **Anime/Cartoon Support:** Specialized detection mode for anime, cartoon, and stylized characters.
+* **Multiple Face Support:** Automatically generates separate cropped images for every person detected in a single photo.
+* **1x1 Square Output:** Crops faces to a perfect square format, ideal for social media avatars.
+* **Customizable Padding:** Adjustable padding logic ensures faces aren't too zoomed in.
+* **Batch Processing:** Process single images or entire directories in one go.
+* **Wide Format Support:** Works with JPG, PNG, BMP, TIFF, and other common formats.
 
 ## Installation
 
-1. **Install Python dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+1.  **Install Python dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-2. **Or install manually:**
-   ```bash
-   pip install opencv-python numpy
-   ```
+2.  **Or install manually:**
+    ```bash
+    pip install opencv-python numpy
+    ```
 
 ## Usage
 
 ### Command Line Interface
 
-#### Process a single image:
+**Process a single image:**
 ```bash
 python crop_face.py path/to/your/image.jpg
 ```
 
-#### Process a directory of images:
+**Process a directory of images:**
 ```bash
 python crop_face.py path/to/your/photos/folder
 ```
 
-#### Custom output directory:
+**Custom output directory:**
 ```bash
 python crop_face.py image.jpg -o my_cropped_faces
 ```
 
-#### Custom output size and padding:
+**Custom output size and padding:**
 ```bash
 python crop_face.py image.jpg -s 1024 -p 0.5
 ```
 
-#### Process anime/cartoon faces:
+**Process anime/cartoon faces:**
 ```bash
 python crop_face.py anime_image.jpg --anime
 ```
 
 ### Command Line Options
 
-- `input`: Input image file or directory (required)
-- `-o, --output`: Output directory (default: `cropped_faces`)
-- `-s, --size`: Output image size in pixels (default: 512)
-- `-p, --padding`: Padding ratio around face (default: 0.3 = 30% extra)
-- `--cascade`: Path to custom face cascade XML file (optional)
-- `--anime`: Enable anime/cartoon face detection mode
+* `input`: Input image file or directory (**required**).
+* `-o, --output`: Output directory (default: `cropped_faces`).
+* `-s, --size`: Output image size in pixels (default: `512`).
+* `-p, --padding`: Padding ratio around face (default: `0.3` = 30% extra).
+* `--cascade`: Path to custom face cascade XML file (optional).
+* `--anime`: Enable anime/cartoon face detection mode.
 
 ### Programmatic Usage
+
+You can also import the class into your own Python scripts:
 
 ```python
 from crop_face import FaceCropper
@@ -101,17 +120,17 @@ images_processed, total_faces = cropper.process_directory(
 ## Examples
 
 ### Example 1: Single Person Photo
-Input: `family_photo.jpg` (contains 1 person)
-Output: `family_photo_profile.jpg` (512x512 square crop)
+* **Input:** `family_photo.jpg` (contains 1 person)
+* **Output:** `family_photo_profile.jpg` (512x512 square crop)
 
 ### Example 2: Group Photo
-Input: `team_photo.jpg` (contains 5 people)
-Output: 
-- `team_photo_face_1_profile.jpg`
-- `team_photo_face_2_profile.jpg`
-- `team_photo_face_3_profile.jpg`
-- `team_photo_face_4_profile.jpg`
-- `team_photo_face_5_profile.jpg`
+* **Input:** `team_photo.jpg` (contains 5 people)
+* **Output:**
+    * `team_photo_face_1_profile.jpg`
+    * `team_photo_face_2_profile.jpg`
+    * `team_photo_face_3_profile.jpg`
+    * `team_photo_face_4_profile.jpg`
+    * `team_photo_face_5_profile.jpg`
 
 ### Example 3: Batch Processing
 ```bash
@@ -127,56 +146,53 @@ python crop_face.py anime_screenshots/ --anime -o anime_profiles/
 
 ## How It Works
 
-1. **Face Detection**: Uses OpenCV's Haar Cascade classifier to detect faces in the image
-   - **Standard Mode**: Optimized for real human faces
-   - **Anime Mode**: Uses more sensitive parameters and alternative color-based detection for stylized characters
-2. **Face Cropping**: For each detected face:
-   - Calculates the center point of the face
-   - Creates a square crop around the face with configurable padding
-   - Handles edge cases where the crop would extend beyond image boundaries
-3. **Resizing**: Resizes the cropped region to the specified output size
-4. **Saving**: Saves each face as a separate 1x1 profile picture
+1.  **Face Detection:** Uses OpenCV's Haar Cascade classifier to detect faces in the image.
+    * **Standard Mode:** Optimized for real human faces.
+    * **Anime Mode:** Uses more sensitive parameters and alternative color-based detection for stylized characters.
+2.  **Face Cropping:** For each detected face:
+    * Calculates the center point of the face.
+    * Creates a square crop around the face with configurable padding.
+    * Handles edge cases where the crop would extend beyond image boundaries.
+3.  **Resizing:** Resizes the cropped region to the specified output size.
+4.  **Saving:** Saves each face as a separate 1x1 profile picture.
 
 ## Tips for Best Results
 
-### For Human Faces:
-- **Good Lighting**: Well-lit faces are detected more accurately
-- **Frontal Faces**: The detector works best with faces looking toward the camera
-- **Clear Images**: Higher resolution images generally give better results
+### For Human Faces
+* **Good Lighting:** Well-lit faces are detected more accurately.
+* **Frontal Faces:** The detector works best with faces looking toward the camera.
+* **Clear Images:** Higher resolution images generally give better results.
 
-### For Anime/Cartoon Faces:
-- **Use Anime Mode**: Always use the `--anime` flag for anime, cartoon, or stylized characters
-- **Good Contrast**: Characters with clear facial features work better
-- **Avoid Complex Backgrounds**: Simple backgrounds improve detection accuracy
-- **Default Padding**: Anime mode automatically uses at least 50% padding to avoid over-zooming
-- **Try Different Padding**: For very close-up faces, try `-p 0.6` or `-p 0.7` for more context
+### For Anime/Cartoon Faces
+* **Use Anime Mode:** Always use the `--anime` flag for anime, cartoon, or stylized characters.
+* **Good Contrast:** Characters with clear facial features work better.
+* **Avoid Complex Backgrounds:** Simple backgrounds improve detection accuracy.
+* **Default Padding:** Anime mode automatically uses at least 50% padding to avoid over-zooming.
 
-### General Tips:
-- **Adjust Padding**: Use the `-p` parameter to add more or less space around faces
-- **Output Size**: Larger output sizes (1024+) are better for high-quality profile pictures
+### General Tips
+* **Adjust Padding:** Use the `-p` parameter to add more or less space around faces.
+* **Output Size:** Larger output sizes (1024+) are better for high-quality profile pictures.
 
 ## Troubleshooting
 
-### No faces detected?
-- Ensure the image contains clear, well-lit faces
-- Try adjusting the face detection parameters in the code
-- Check that OpenCV is properly installed
-
-### Poor quality crops?
-- Increase the output size with `-s` parameter
-- Adjust padding with `-p` parameter
-- Use higher resolution source images
-
-### Multiple faces not detected?
-- The default settings work well for most cases
-- For challenging images, you might need to adjust the `scaleFactor` and `minNeighbors` parameters in the `detect_faces` method
+* **No faces detected?**
+    * Ensure the image contains clear, well-lit faces.
+    * Try adjusting the face detection parameters in the code.
+    * Check that OpenCV is properly installed.
+* **Poor quality crops?**
+    * Increase the output size with `-s` parameter.
+    * Adjust padding with `-p` parameter.
+    * Use higher resolution source images.
+* **Multiple faces not detected?**
+    * The default settings work well for most cases.
+    * For challenging images, you might need to adjust the `scaleFactor` and `minNeighbors` parameters in the `detect_faces` method.
 
 ## Dependencies
 
-- **OpenCV**: For image processing and face detection
-- **NumPy**: For numerical operations
-- **Python 3.6+**: Required for pathlib and f-strings
+* **OpenCV:** For image processing and face detection.
+* **NumPy:** For numerical operations.
+* **Python 3.6+:** Required for pathlib and f-strings.
 
 ## License
 
-This script is provided as-is for educational and personal use. 
+This script is provided as-is for educational and personal use.
