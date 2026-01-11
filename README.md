@@ -22,7 +22,7 @@ This tool is perfect for creating profile pictures from group photos or any imag
 ## Features
 
 * **Automatic Face Detection:** Uses OpenCV's Haar Cascade classifier to accurately locate faces.
-* **Anime/Cartoon Support:** Specialized detection mode for anime, cartoon, and stylized characters.
+* **Anime Support:** Specialized detection mode for anime and stylized characters.
 * **Multiple Face Support:** Automatically generates separate cropped images for every person detected in a single photo.
 * **1x1 Square Output:** Crops faces to a perfect square format, ideal for social media avatars.
 * **Customizable Padding:** Adjustable padding logic ensures faces aren't too zoomed in.
